@@ -14,10 +14,39 @@
     <header>
       <h1>Get Random Cats</h1>
     </header>
-    <div class="card">
-      <img alt="random cat" class="card__img">
-      <button class="card__button">Get a cat!</button>
-    </div>
+    <section class="cont">
+
+      <span id="error"></span>
+
+      <article>
+        <img id="img1" class="cont__img" alt="random cat">
+        <button class="fav__btn">Add to favorites</button>
+      </article>
+
+      <article>
+        <img id="img2" class="cont__img" alt="random cat">
+        <button class="fav__btn">Add to favorites</button>
+      </article>
+
+      <article>
+        <img id="img3" class="cont__img" alt="random cat">
+        <button class="fav__btn">Add to favorites</button>
+      </article>
+      
+      <button class="cont__btn">Get new cats!</button>
+
+    </section>
+
+    <section class="fav">
+      <div>
+        <h2>Favorites</h2>
+      </div>
+      <article>
+        <img class="fav__img" alt="favorites cats">
+        <button class="fav__btn">Delete from favorites</button>
+      </article>
+    </section>
+
     <script src="./main.js"></script>
   </body>
 </html>

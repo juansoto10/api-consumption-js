@@ -6,14 +6,21 @@
 html {
   font-size: 62.5%;
   font-family: 'Amaranth', sans-serif;
-  background-color: #E1E289;
+  /* background-color: #E1E289; */
+}
+body {
+  background: #e1e289;
+  background: -webkit-radial-gradient(circle, #e1e289 0%, #0a210f 100%);
+  background: radial-gradient(circle, #e1e289 0%, #0a210f 100%);
 }
 
-header, .card {
+header, .cont {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.cont {
+  flex-wrap: wrap;
 }
 
 header {
@@ -21,14 +28,25 @@ header {
 }
 
 h1 {
-  font-size: 4.8rem;
+  font-size: 5.4rem;
   font-weight: 700;
   color: #14591D;
-  margin: 50px 0 30px;
+  margin: 30px 0 30px;
 }
-img {
-  width: auto;
-  height: 550px;
+
+article {
+  width: 33.33%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+
+.cont__img {
+  max-width: 82%;
+  height: 300px;
   border-radius: 20px;
   box-shadow: 0px 0px 10px 2px #0A210F;
   margin-bottom: 50px;
@@ -37,10 +55,11 @@ img {
 img:hover {
   transform: scale(1.03);
 }
-button {
-  width: 150px;
-  height: 64px;
-  font-size: 3rem;
+
+.cont__btn {
+  width: 160px;
+  height: 70px;
+  font-size: 2.5rem;
   font-family: 'Amaranth', sans-serif;
   border-radius: 15px;
   border: 2px solid #0A210F;
@@ -50,8 +69,48 @@ button {
   transition: 0.3s;
   padding-bottom: 4px;
 }
-button:hover {
+.cont__btn:hover {
   background-color: #0A210F;
   color: #99AA38;
   border: 2px solid #99AA38;
+}
+
+.fav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.fav div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+}
+.fav h2 {
+  font-size: 4.2rem;
+  font-weight: 700;
+  color: #14591D;
+  margin: 50px 0 30px;
+  justify-self: right;
+}
+
+.fav__btn {
+  width: 150px;
+  height: 55px;
+  font-size: 2rem;
+  font-family: 'Amaranth', sans-serif;
+  border-radius: 15px;
+  color: #99AA38;
+  border: 2px solid #99AA38;
+  background-color: #14591D;
+  margin-bottom: 25px;
+  transition: 0.3s;
+  padding-bottom: 4px;
+}
+.fav__btn:hover {
+  background-color: #e1e289;
+  color: #14591D;
+  border: 2px solid #14591D;
 }
