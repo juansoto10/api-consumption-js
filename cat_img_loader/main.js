@@ -3,21 +3,18 @@ const API_KEY = 'live_6dp7FWHHTREaCTCSGjgr573r0nL32cHyEDrgIIC6rXLqlvSPMSeUp6dzRc
 const API_URL_RANDOM = [
   'https://api.thecatapi.com/v1/images/search',
   '?limit=3',
-  `&api_key=${API_KEY}`,
 ].join('');
 
-const API_URL_FAVOURITES = [
-  'https://api.thecatapi.com/v1/favourites',
-  '?limit=8',
-  `&api_key=${API_KEY}`,
-].join('');
+const API_URL_FAVOURITES = 'https://api.thecatapi.com/v1/favourites';
 
-const API_URL_FAVOURITES_DELETE = 'https://api.thecatapi.com/v1/favourites';
+const API_URL_UPLOAD = 'https://api.thecatapi.com/v1/images/upload';
 
 const spanErrorRandom = document.getElementById('error-random');
 const spanErrorFav = document.getElementById('error-fav');
 
 const button = document.querySelector('.cont__btn');
+
+const btnUpload = document.getElementById('upload-cat');
 /* const favButton = document.querySelectorAll('.cont__fav-btn'); */
 
 async function getRandomCats() {
@@ -49,7 +46,12 @@ async function getRandomCats() {
 }
 
 async function getFavCats() {
-  const res = await fetch(API_URL_FAVOURITES);
+  const res = await fetch(API_URL_FAVOURITES, {
+    method: 'GET',
+    headers: {
+      'x-api-key': API_KEY,
+    }
+  });
   console.log(res);
   
   console.log('Favs');
@@ -125,7 +127,7 @@ async function saveFavCat(id) {
 
 async function deleteFavCat(id) {
   console.log('deleteFavCats Clicked');
-  const res = await fetch(`${API_URL_FAVOURITES_DELETE}/${id}`, {
+  const res = await fetch(`${API_URL_FAVOURITES}/${id}`, {
     method: 'DELETE',
     headers: { 
       'Content-Type': 'application/json',
@@ -146,10 +148,38 @@ async function deleteFavCat(id) {
   }
 }
 
+async function uploadCat() {
+  const form = document.getElementById('upload-form');
+  const formData = new FormData(form);
+
+  console.log(formData.get('file'));
+
+  const res = await fetch(API_URL_UPLOAD, {
+    method: 'POST',
+    headers: {
+      'x-api-key': API_KEY,
+    },
+    body: formData,
+  })
+
+  const data = await res.json();
+
+  if (res.status !== 201) {
+    spanErrorFav.innerText = 'An error occurred: ' + res.status + data.message;
+    console.log({data});
+  } else {
+    console.log('Photo uploaded successfully!');
+    console.log({data});
+    console.log(data.url);
+    saveFavCat(data.id);
+  }
+}
+
 
 getRandomCats()
 getFavCats()
 
 button.addEventListener('click', getRandomCats);
+btnUpload.addEventListener('click', uploadCat);
 
 /* favButton.addEventListener('click', saveFavCats); */
